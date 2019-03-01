@@ -1,1 +1,2 @@
-# dev
+# Yet Another Software Development Blog
+

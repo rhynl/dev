@@ -1,0 +1,23 @@
+baseURL = "https://rhynl.dev"
+languageCode = "en-us"
+title = "Yet Another Software Development Blog"
+theme = "m10c"
+publishDir = "docs"
+
+[params]
+  avatar = "./rhynl.jpeg"
+  favicon = "./favicon.png"
+  author = "Rhaynel Parra Aguiar"
+  description = "Always in learning mode ON"
+  [[params.social]]
+    name = "github"
+    url = "https://github.com/rhynl"
+  [[params.social]]
+    name = "twitter"
+    url = "https://twitter.com/_rhaynel"
+  [params.style]
+    darkestColor = "#520808"
+    darkColor = "#212121"
+    primaryColor = "#ffffff"
+    lightColor = "#a2a2a2"
+    lightestColor = "#d3d3d3"
