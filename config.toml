@@ -3,12 +3,13 @@ languageCode = "en-us"
 title = "Yet Another Software Development Blog"
 theme = "m10c"
 publishDir = "docs"
+paginate = 5
 
 [params]
   avatar = "./rhynl.jpeg"
   favicon = "./favicon.png"
   author = "Rhaynel Parra Aguiar"
-  description = "Always in learning mode ON"
+  description = "Always in learning mode On."
   [[params.social]]
     name = "github"
     url = "https://github.com/rhynl"
