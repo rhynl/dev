@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>TypeScript Exciting New Features // Yet Another Software Development Blog</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.59.1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Rhaynel Parra Aguiar" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://rhynl.dev/css/main.min.c993447b5f1bf671cb62187a36ce48ff7148538b971c1d48c7b86de663ef3b5d.css" />
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="TypeScript Exciting New Features"/>
+<meta name="twitter:description" content="At least those that I am waiting for There are two new features that will come to TypeScript in version 3.7, well there are more features but, in my opinion, these two are the coolest. I am talking about Optional Chaining and Nullish Coalescing.
+Optional Chainig (?.) Is one of the most demanded features to be icluded into ECMAScript and is in stage 3 and for a good reason. Let&rsquo;s see why, suppose we have an object from wich we need to extract just the fullName property, most of the time we usually do something like this:"/>
+
+  <meta property="og:title" content="TypeScript Exciting New Features" />
+<meta property="og:description" content="At least those that I am waiting for There are two new features that will come to TypeScript in version 3.7, well there are more features but, in my opinion, these two are the coolest. I am talking about Optional Chaining and Nullish Coalescing.
+Optional Chainig (?.) Is one of the most demanded features to be icluded into ECMAScript and is in stage 3 and for a good reason. Let&rsquo;s see why, suppose we have an object from wich we need to extract just the fullName property, most of the time we usually do something like this:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rhynl.dev/posts/typescript-exciting-new-features/" />
+<meta property="article:published_time" content="2019-10-22T22:51:13-03:00" />
+<meta property="article:modified_time" content="2019-10-22T22:51:13-03:00" />
+
+
+</head>
+
+<body>
+  <header class="app-header">
+    <a href="https://rhynl.dev"><img class="app-header-avatar"
+        src="/rhynl.jpeg"
+        alt="Rhaynel Parra Aguiar" /></a>
+    <h1>Rhaynel Parra Aguiar</h1>
+    <p>
+      Always in learning mode On.
+    </p>
+    <div class="app-header-social">
+      
+      <a target="_blank" href="https://github.com/rhynl"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+      <a target="_blank" href="https://twitter.com/_rhaynel"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg></a>
+      
+    </div>
+  </header>
+  <main class="app-container">
+    
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">TypeScript Exciting New Features</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Oct 22, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          2 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h3 id="at-least-those-that-i-am-waiting-for">At least those that I am waiting for</h3>
+
+<p>There are two new features that will come to TypeScript in version 3.7, well there are more features but, in my opinion, these two are the coolest. I am talking about <code>Optional Chaining</code> and <code>Nullish Coalescing</code>.</p>
+
+<h4 id="optional-chainig"><code>Optional Chainig (?.)</code></h4>
+
+<p>Is one of the most demanded features to be icluded into ECMAScript and is in <a href="https://github.com/tc39/proposal-optional-chaining">stage 3</a> and for a good reason. Let&rsquo;s see why, suppose we have an object from wich we need to extract just the fullName property, most of the time we usually do something like this:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">persons</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">persons</span>.<span style="color:#a6e22e">person</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">persons</span>.<span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">names</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">persons</span>.<span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">names</span>.<span style="color:#a6e22e">fullName</span>) {
+<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">persons</span>.<span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">names</span>.<span style="color:#a6e22e">fullName</span>;
+}
+<span style="color:#75715e">// ...
+</span></code></pre></div>
+
+<p>It would be nice if we just could do this:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">persons</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">person</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">names</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">fullName</span> <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;&#39;</span>;
+<span style="color:#75715e">// ...
+</span></code></pre></div>
+
+<p>And that is actually what <code>optional chaining</code> does, it allows us to write code where if there is a <code>null</code> or <code>undefined</code> value in the chain stops execution and return without throw exceptions. Just returning the <code>undefined</code> or <code>null</code> value. Be aware that <code>?.</code> acts differently than those <code>&amp;&amp;</code> operations since <code>&amp;&amp;</code> will act especially on falsy values like empty <code>strings</code>,<code>0</code> or even <code>false</code>.</p>
+
+<h4 id="nullish-coalescing"><code>Nullish Coalescing (??)</code></h4>
+
+<p>Is the best companion for <code>optional chaining</code>, it is also in <a href="https://github.com/tc39/proposal-nullish-coalescing">stage 3</a>. Let&rsquo;s take the previous persons example again:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">persons</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">person</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">names</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">title</span> <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;Mr.&#39;</span>;
+<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">persons</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">person</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">||</span> <span style="color:#ae81ff">1</span>;
+<span style="color:#a6e22e">active</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">persons</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">person</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">isActive</span> <span style="color:#f92672">||</span> <span style="color:#66d9ef">true</span>;
+<span style="color:#75715e">// ...
+</span></code></pre></div>
+
+<p>What happens if <code>title</code> is equal to <code>''</code> or if <code>age</code> is equal to <code>0</code> or if <code>isActive</code> is equal to <code>false</code>. In all those cases the fallback value will be used instead. And might not be what we want right? It is in this scenario where <code>nullish coalescing</code> come to the rescue, performing an equality check against nullary values (<code>null</code> or <code>undefined</code>).</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">persons</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">person</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">names</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">title</span> <span style="color:#f92672">??</span> <span style="color:#e6db74">&#39;Mr.&#39;</span>;
+<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">persons</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">person</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">??</span> <span style="color:#ae81ff">1</span>;
+<span style="color:#a6e22e">active</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">persons</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">person</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">isActive</span> <span style="color:#f92672">??</span> <span style="color:#66d9ef">true</span>;
+<span style="color:#75715e">// ...
+</span></code></pre></div>
+
+<p>So, now we can safely be sure that if <code>title</code> is equal to <code>''</code> won&rsquo;t be replaced with <code>'Mr.'</code>. And if <code>age</code> is equal to <code>0</code> won&rsquo;t be replaced with <code>1</code>, and so on. And that is great right?</p>
+
+<p>And this is just the tip of the iceberg, you can read more about this in the TypeScript Beta <a href="https://devblogs.microsoft.com/typescript/announcing-typescript-3-7-beta/">announcement</a>.</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+  </main>
+</body>
+</html>
