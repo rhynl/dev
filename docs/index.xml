@@ -6,10 +6,21 @@
     <description>Recent content on Yet Another Software Development Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 22 Oct 2019 22:51:13 -0300</lastBuildDate>
+    <lastBuildDate>Tue, 31 Mar 2020 11:22:30 -0300</lastBuildDate>
     
 	<atom:link href="https://rhynl.dev/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Testing TypeScript Apps in Node.js</title>
+      <link>https://rhynl.dev/posts/testing-typescript-apps-in-nodejs/</link>
+      <pubDate>Tue, 31 Mar 2020 11:22:30 -0300</pubDate>
+      
+      <guid>https://rhynl.dev/posts/testing-typescript-apps-in-nodejs/</guid>
+      <description>Unit testing is hard In this post, I will not dive into why is unit testing important or if you should or not care about testing (hint: you should, always), I assuming that you already know how important is testing.
+So let&amp;rsquo;s go straight to business&amp;hellip;
+But setting up the tooling can be harder Setting up the unit testing environment could be tricky some times and we are not talking about typescript but any language really but, if you tried to do it for a typescript development you know it is more complicated than what is seen.</description>
+    </item>
     
     <item>
       <title>TypeScript Exciting New Features</title>

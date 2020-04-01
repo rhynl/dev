@@ -4,16 +4,21 @@
   
   <url>
     <loc>https://rhynl.dev/posts/</loc>
-    <lastmod>2019-10-22T22:51:13-03:00</lastmod>
+    <lastmod>2020-03-31T11:22:30-03:00</lastmod>
   </url>
   
   <url>
-    <loc>https://rhynl.dev/posts/typescript-exciting-new-features/</loc>
-    <lastmod>2019-10-22T22:51:13-03:00</lastmod>
+    <loc>https://rhynl.dev/posts/testing-typescript-apps-in-nodejs/</loc>
+    <lastmod>2020-03-31T11:22:30-03:00</lastmod>
   </url>
   
   <url>
     <loc>https://rhynl.dev/</loc>
+    <lastmod>2020-03-31T11:22:30-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rhynl.dev/posts/typescript-exciting-new-features/</loc>
     <lastmod>2019-10-22T22:51:13-03:00</lastmod>
   </url>
   

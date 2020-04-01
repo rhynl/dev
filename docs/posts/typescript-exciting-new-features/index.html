@@ -4,7 +4,7 @@
 <head>
   <title>TypeScript Exciting New Features // Yet Another Software Development Blog</title>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.59.1" />
+  <meta name="generator" content="Hugo 0.68.3" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="Rhaynel Parra Aguiar" />
   <meta name="description"
@@ -75,54 +75,38 @@ Optional Chainig (?.) Is one of the most demanded features to be icluded into EC
         </div></div>
     </header>
     <div class="post-content">
-      
-
-<h3 id="at-least-those-that-i-am-waiting-for">At least those that I am waiting for</h3>
-
+      <h3 id="at-least-those-that-i-am-waiting-for">At least those that I am waiting for</h3>
 <p>There are two new features that will come to TypeScript in version 3.7, well there are more features but, in my opinion, these two are the coolest. I am talking about <code>Optional Chaining</code> and <code>Nullish Coalescing</code>.</p>
-
-<h4 id="optional-chainig"><code>Optional Chainig (?.)</code></h4>
-
+<h4 id="optional-chainig-"><code>Optional Chainig (?.)</code></h4>
 <p>Is one of the most demanded features to be icluded into ECMAScript and is in <a href="https://github.com/tc39/proposal-optional-chaining">stage 3</a> and for a good reason. Let&rsquo;s see why, suppose we have an object from wich we need to extract just the fullName property, most of the time we usually do something like this:</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#75715e">// ...
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">persons</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">persons</span>.<span style="color:#a6e22e">person</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">persons</span>.<span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">names</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">persons</span>.<span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">names</span>.<span style="color:#a6e22e">fullName</span>) {
 <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">persons</span>.<span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">names</span>.<span style="color:#a6e22e">fullName</span>;
 }
 <span style="color:#75715e">// ...
 </span></code></pre></div>
-
 <p>It would be nice if we just could do this:</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#75715e">// ...
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">persons</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">person</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">names</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">fullName</span> <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;&#39;</span>;
 <span style="color:#75715e">// ...
 </span></code></pre></div>
-
 <p>And that is actually what <code>optional chaining</code> does, it allows us to write code where if there is a <code>null</code> or <code>undefined</code> value in the chain stops execution and return without throw exceptions. Just returning the <code>undefined</code> or <code>null</code> value. Be aware that <code>?.</code> acts differently than those <code>&amp;&amp;</code> operations since <code>&amp;&amp;</code> will act especially on falsy values like empty <code>strings</code>,<code>0</code> or even <code>false</code>.</p>
-
-<h4 id="nullish-coalescing"><code>Nullish Coalescing (??)</code></h4>
-
+<h4 id="nullish-coalescing-"><code>Nullish Coalescing (??)</code></h4>
 <p>Is the best companion for <code>optional chaining</code>, it is also in <a href="https://github.com/tc39/proposal-nullish-coalescing">stage 3</a>. Let&rsquo;s take the previous persons example again:</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#75715e">// ...
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">persons</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">person</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">names</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">title</span> <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;Mr.&#39;</span>;
 <span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">persons</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">person</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">||</span> <span style="color:#ae81ff">1</span>;
 <span style="color:#a6e22e">active</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">persons</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">person</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">isActive</span> <span style="color:#f92672">||</span> <span style="color:#66d9ef">true</span>;
 <span style="color:#75715e">// ...
 </span></code></pre></div>
-
 <p>What happens if <code>title</code> is equal to <code>''</code> or if <code>age</code> is equal to <code>0</code> or if <code>isActive</code> is equal to <code>false</code>. In all those cases the fallback value will be used instead. And might not be what we want right? It is in this scenario where <code>nullish coalescing</code> come to the rescue, performing an equality check against nullary values (<code>null</code> or <code>undefined</code>).</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#75715e">// ...
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">persons</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">person</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">names</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">title</span> <span style="color:#f92672">??</span> <span style="color:#e6db74">&#39;Mr.&#39;</span>;
 <span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">persons</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">person</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">??</span> <span style="color:#ae81ff">1</span>;
 <span style="color:#a6e22e">active</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">persons</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">person</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">isActive</span> <span style="color:#f92672">??</span> <span style="color:#66d9ef">true</span>;
 <span style="color:#75715e">// ...
 </span></code></pre></div>
-
 <p>So, now we can safely be sure that if <code>title</code> is equal to <code>''</code> won&rsquo;t be replaced with <code>'Mr.'</code>. And if <code>age</code> is equal to <code>0</code> won&rsquo;t be replaced with <code>1</code>, and so on. And that is great right?</p>
-
 <p>And this is just the tip of the iceberg, you can read more about this in the TypeScript Beta <a href="https://devblogs.microsoft.com/typescript/announcing-typescript-3-7-beta/">announcement</a>.</p>
 
     </div>

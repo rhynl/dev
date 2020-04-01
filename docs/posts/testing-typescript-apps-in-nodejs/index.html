@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <title>Testing TypeScript Apps in Node.js // Yet Another Software Development Blog</title>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Rhaynel Parra Aguiar" />
+  <meta name="description"
+    content="" />
+  <link rel="stylesheet" href="https://rhynl.dev/css/main.min.c993447b5f1bf671cb62187a36ce48ff7148538b971c1d48c7b86de663ef3b5d.css" />
+
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Testing TypeScript Apps in Node.js"/>
+<meta name="twitter:description" content="Unit testing is hard In this post, I will not dive into why is unit testing important or if you should or not care about testing (hint: you should, always), I assuming that you already know how important is testing.
+So let&rsquo;s go straight to business&hellip;
+But setting up the tooling can be harder Setting up the unit testing environment could be tricky some times and we are not talking about typescript but any language really but, if you tried to do it for a typescript development you know it is more complicated than what is seen."/>
+
+  <meta property="og:title" content="Testing TypeScript Apps in Node.js" />
+<meta property="og:description" content="Unit testing is hard In this post, I will not dive into why is unit testing important or if you should or not care about testing (hint: you should, always), I assuming that you already know how important is testing.
+So let&rsquo;s go straight to business&hellip;
+But setting up the tooling can be harder Setting up the unit testing environment could be tricky some times and we are not talking about typescript but any language really but, if you tried to do it for a typescript development you know it is more complicated than what is seen." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rhynl.dev/posts/testing-typescript-apps-in-nodejs/" />
+<meta property="article:published_time" content="2020-03-31T11:22:30-03:00" />
+<meta property="article:modified_time" content="2020-03-31T11:22:30-03:00" />
+
+
+</head>
+
+<body>
+  <header class="app-header">
+    <a href="https://rhynl.dev"><img class="app-header-avatar"
+        src="/rhynl.jpeg"
+        alt="Rhaynel Parra Aguiar" /></a>
+    <h1>Rhaynel Parra Aguiar</h1>
+    <p>
+      Always in learning mode On.
+    </p>
+    <div class="app-header-social">
+      
+      <a target="_blank" href="https://github.com/rhynl"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+      
+      <a target="_blank" href="https://twitter.com/_rhaynel"
+        rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg></a>
+      
+    </div>
+  </header>
+  <main class="app-container">
+    
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Testing TypeScript Apps in Node.js</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Mar 31, 2020
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          5 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      <h3 id="unit-testing-is-hard">Unit testing is hard</h3>
+<p>In this post, I will not dive into why is unit testing important or if you should or not care about testing (hint: you should, always), I assuming that you already know how important is testing.</p>
+<p>So let&rsquo;s go straight to business&hellip;</p>
+<h3 id="but-setting-up-the-tooling-can-be-harder">But setting up the tooling can be harder</h3>
+<p>Setting up the unit testing environment could be tricky some times and we are not talking about typescript but any language really but, if you tried to do it for a typescript development you know it is more complicated than what is seen. it took to my several try/error till I got a setup that works for me, that does not mean that it will be the best setup for everything nor that it will be what are you looking for but it definitely can be helpful as a starting point.</p>
+<p>The first thing we should care is linting and this a very personal decision that every developer and/or team has to do by their own before start writting the first line of code. Once that decisicion had been made then we need to setup the tools, there are few options out there but I ussually go for two: <a href="https://eslint.org"><code>eslint</code></a> and <a href="https://palantir.github.io/tslint/"><code>tslint</code></a>.</p>
+<p>In the case of tslint we just need to install the package:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm i -D tslint
+</code></pre></div><p>And, create the <code>tslint.json</code> file, where we can tweak the rules to accommodate them to the guidelines we decided before, this file looks something like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#75715e">// the complete file can be found in
+</span><span style="color:#75715e">// https://github.com/rhynl/setup-for-testing-typescript/tslint.json
+</span><span style="color:#75715e"></span>{
+  <span style="color:#e6db74">&#34;defaultSeverity&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;warning&#34;</span>,
+  <span style="color:#e6db74">&#34;rules&#34;</span><span style="color:#f92672">:</span> {
+    <span style="color:#e6db74">&#34;align&#34;</span><span style="color:#f92672">:</span> [
+      <span style="color:#66d9ef">false</span>,
+      <span style="color:#e6db74">&#34;parameters&#34;</span>,
+      <span style="color:#e6db74">&#34;arguments&#34;</span>,
+      <span style="color:#e6db74">&#34;statements&#34;</span>
+    ],
+    <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>    <span style="color:#e6db74">&#34;max-line-length&#34;</span><span style="color:#f92672">:</span> [
+      <span style="color:#66d9ef">true</span>,
+      <span style="color:#ae81ff">140</span>
+    ],
+    <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>    <span style="color:#e6db74">&#34;whitespace&#34;</span><span style="color:#f92672">:</span> [
+      <span style="color:#66d9ef">true</span>,
+      <span style="color:#e6db74">&#34;check-branch&#34;</span>,
+      <span style="color:#e6db74">&#34;check-decl&#34;</span>,
+      <span style="color:#e6db74">&#34;check-operator&#34;</span>,
+      <span style="color:#e6db74">&#34;check-separator&#34;</span>,
+      <span style="color:#e6db74">&#34;check-type&#34;</span>
+    ]
+  }
+}
+</code></pre></div><p>That was easy right? That is because tslint as the name implies is ment to be use with typescript, the situation is quite different with eslint, as you will see, same as before we need to install the packages:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm i -D eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser
+</code></pre></div><p>And, create the <code>.eslintrc</code> file, where we can tweak the rules in the same way we did for <code>tslint</code>, especial attention to how to use <code>@typescript-eslint/eslint-plugin</code> and <code>@typescript-eslint/parser</code>, basically extending the recommended configuration of <code>eslint-plugin</code> and using the <code>parser</code> to process the TypeScript before linting, and this is required because, by default, eslint does not support TypeScript.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#75715e">// the complete file can be found in
+</span><span style="color:#75715e">// https://github.com/rhynl/setup-for-testing-typescript/.eslintrc
+</span><span style="color:#75715e"></span>{
+  <span style="color:#e6db74">&#34;extends&#34;</span><span style="color:#f92672">:</span> [
+    <span style="color:#e6db74">&#34;plugin:@typescript-eslint/recommended&#34;</span>
+  ],
+  <span style="color:#e6db74">&#34;env&#34;</span><span style="color:#f92672">:</span> {
+    <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>  },
+  <span style="color:#e6db74">&#34;parser&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;@typescript-eslint/parser&#34;</span>,
+  <span style="color:#e6db74">&#34;parserOptions&#34;</span><span style="color:#f92672">:</span> {
+      <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>    }
+  },
+  <span style="color:#e6db74">&#34;plugins&#34;</span><span style="color:#f92672">:</span> [
+    <span style="color:#e6db74">&#34;@typescript-eslint/eslint-plugin&#34;</span>
+  ],
+  <span style="color:#e6db74">&#34;rules&#34;</span><span style="color:#f92672">:</span> {
+    <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>  }
+}
+</code></pre></div><p>We include linting as part of the unit testing process because follow a coding guideline and enforce it through linting is a way to test our code against known anti-pattern that can affect the quality of the code, it could helpfull to add a script inside <code>package.json</code> to run the linting every time we want.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#75715e">// the complete file can be found in
+</span><span style="color:#75715e">// https://github.com/rhynl/setup-for-testing-typescript/package.json
+</span><span style="color:#75715e"></span>{
+  <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>  <span style="color:#e6db74">&#34;scripts&#34;</span><span style="color:#f92672">:</span> {
+    <span style="color:#e6db74">&#34;lint&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;eslint src/**/* --color --fix &amp;&amp; tslint --fix --project .&#34;</span>
+  },
+  <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>Now we can start with test tools, we are going to use, <a href="https://mochajs.org"><code>mocha</code></a> as a test runner, and <a href="https://www.chaijs.com"><code>chai</code></a> as an assertion library. Also, <a href="https://github.com/TypeStrong/ts-node"><code>ts-node</code></a> needs to be installed as well as the typings for <a href="https://mochajs.org"><code>mocha</code></a> and <a href="https://www.chaijs.com"><code>chai</code></a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm i -D mocha chai @types/mocha @types/chai ts-node
+</code></pre></div><p>And, create a <code>.mocharc.json</code> file, there are different ways of create a <a href="https://github.com/mochajs/mocha/tree/master/example/config"><code>.mocharc</code></a> file, you can use whenever is best suitable for you project. The content looks somethign similar to the follows.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#75715e">// the complete file can be found in
+</span><span style="color:#75715e">// https://github.com/rhynl/setup-for-testing-typescript/.mocharc.json
+</span><span style="color:#75715e"></span>{
+  <span style="color:#e6db74">&#34;require&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;ts-node/register&#34;</span>,
+  <span style="color:#e6db74">&#34;colors&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+  <span style="color:#e6db74">&#34;recursive&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+  <span style="color:#e6db74">&#34;full-trace&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+  <span style="color:#e6db74">&#34;fail&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+  <span style="color:#e6db74">&#34;exit&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+  <span style="color:#e6db74">&#34;spec&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;src/**/*.spec.ts&#34;</span>
+}
+</code></pre></div><p>Notice the relevant parts, the <code>require</code> atribute is where we ask to use <code>ts-node/register</code> and <code>spec</code> wehre we said where to look out for test files. Now that everythin is in place, we can add a script to <code>package.json</code> with something like this.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#75715e">// the complete file can be found in
+</span><span style="color:#75715e">// https://github.com/rhynl/setup-for-testing-typescript/package.json
+</span><span style="color:#75715e"></span>{
+  <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>  <span style="color:#e6db74">&#34;scripts&#34;</span><span style="color:#f92672">:</span> {
+    <span style="color:#e6db74">&#34;lint&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;eslint src/**/* --color --fix &amp;&amp; tslint --fix --project .&#34;</span>,
+    <span style="color:#e6db74">&#34;pretest&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;npm run lint --silent&#34;</span>,
+    <span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;mocha&#34;</span>
+  },
+  <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>That way we can run linting and test as part of the same script. There is a final step to do, and that is setup code coverage. For that let&rsquo;s use <a href="https://istanbul.js.org"><code>Istanbul</code></a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm i -D nyc
+</code></pre></div><p>And, create a <code>.nycrc</code> file with the desired configuration, something similar to the one below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#75715e">// the complete file can be found in
+</span><span style="color:#75715e">// https://github.com/rhynl/setup-for-testing-typescript/.nycrc
+</span><span style="color:#75715e"></span>{
+  <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>  <span style="color:#e6db74">&#34;branches&#34;</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">80</span>,
+  <span style="color:#e6db74">&#34;lines&#34;</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">80</span>,
+  <span style="color:#e6db74">&#34;function&#34;</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">80</span>,
+  <span style="color:#e6db74">&#34;statements&#34;</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">80</span>,
+  <span style="color:#e6db74">&#34;reporter&#34;</span><span style="color:#f92672">:</span> [
+    <span style="color:#e6db74">&#34;text&#34;</span>,
+    <span style="color:#e6db74">&#34;html&#34;</span>,
+    <span style="color:#e6db74">&#34;lcov&#34;</span>
+  ],
+  <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>  <span style="color:#e6db74">&#34;exclude&#34;</span><span style="color:#f92672">:</span> [
+    <span style="color:#e6db74">&#34;**/**/*.spec.ts&#34;</span>
+  ]
+}
+</code></pre></div><p>Now, we can add a new script to the <code>package.json</code> file, to be able to check the code coverage from time to time.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#75715e">// the complete file can be found in
+</span><span style="color:#75715e">// https://github.com/rhynl/setup-for-testing-typescript/package.json
+</span><span style="color:#75715e"></span>{
+  <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>  <span style="color:#e6db74">&#34;scripts&#34;</span><span style="color:#f92672">:</span> {
+    <span style="color:#e6db74">&#34;coverage&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;nyc npm run test --silent&#34;</span>,
+    <span style="color:#e6db74">&#34;lint&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;eslint src/**/* --color --fix &amp;&amp; tslint --fix --project .&#34;</span>,
+    <span style="color:#e6db74">&#34;pretest&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;npm run lint --silent&#34;</span>,
+    <span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;mocha&#34;</span>,
+    <span style="color:#e6db74">&#34;tdd&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;mocha --extensions ts --watch --watch-files src || exit 0&#34;</span>
+  },
+  <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>I also add a script to helps me to do <a href="https://en.wikipedia.org/wiki/Test-driven_development"><code>Test Driven Development</code></a>, could you tell what it does.</p>
+<p>That it is. Now you are ready to create great apps testing without issues.</p>
+<p>You can find the example code <a href="https://github.com/rhynl/setup-for-testing-typescript">here</a>.</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+  </main>
+</body>
+</html>
